@@ -1,0 +1,18 @@
+---
+title: "p8105_hw3_jl7035"
+author: "Jeffrey Lin"
+date: "2024-10-12"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load Necessary Libraries 
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+

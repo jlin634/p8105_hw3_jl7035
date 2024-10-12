@@ -15,4 +15,28 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
 ```
+## Problem 1
+```{r}
+
+```
+
+
+## Problem 2
+
+Load in and clean each datasedt
+```{r}
+demographic_df <- read_csv("Data/nhanes_covar.csv")
+head(demographic_df)
+  
+accelerometer_df <- read_csv("Data/nhanes_accel.csv") 
+head(accelerometer_df)
+
+
+```
+
+
+## Problem 3
+```{r}
+
+```
 

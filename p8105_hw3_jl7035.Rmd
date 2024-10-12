@@ -29,7 +29,12 @@ demographic_df <-
   read_csv("Data/nhanes_covar.csv",
     na = c("", "NA", "."),
     skip = 4
-  ) %>% janitor::clean_names 
+  ) %>% 
+  janitor::clean_names() %>% 
+  mutate(
+    sex = factor(sex, levels = c("1", "2"), labels = c("male", "female")),
+    
+  )
   
 head(demographic_df)
   

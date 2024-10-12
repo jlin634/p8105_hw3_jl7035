@@ -25,11 +25,18 @@ library(ggplot2)
 
 Load in and clean each datasedt
 ```{r}
-demographic_df <- read_csv("Data/nhanes_covar.csv")
+demographic_df <- 
+  read_csv("Data/nhanes_covar.csv",
+    na = c("", "NA", "."),
+    skip = 4
+  ) %>% janitor::clean_names 
+  
 head(demographic_df)
   
 accelerometer_df <- read_csv("Data/nhanes_accel.csv") 
 head(accelerometer_df)
+
+
 
 
 ```

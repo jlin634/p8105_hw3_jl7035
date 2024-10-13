@@ -46,8 +46,23 @@ demographic_df <-
   
 head(demographic_df)
   
-accelerometer_df <- read_csv("Data/nhanes_accel.csv") 
+accelerometer_df <- 
+  read_csv("Data/nhanes_accel.csv",
+    na = c("NA", "", ".")
+  ) %>%  
+  janitor::clean_names() %>%
+  pivot_longer(
+    min1:min1440,
+    names_to = "Minute",
+    values_to = "MIMS"
+  ) %>% 
+  mutate(
+    Minute = str_remove(Minute, "min")
+  )
+  
 head(accelerometer_df)
+
+
 
 
 

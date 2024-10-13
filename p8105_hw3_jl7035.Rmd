@@ -23,7 +23,7 @@ library(ggplot2)
 
 ## Problem 2
 
-Load in and clean each datasedt
+Load in and clean each dataset
 ```{r}
 demographic_df <- 
   read_csv("Data/nhanes_covar.csv",
@@ -62,10 +62,17 @@ accelerometer_df <-
   
 head(accelerometer_df)
 
+```
+Join dfs together
+```{r}
+accel_participant_df <-
+  left_join(
+    demographic_df, 
+    accelerometer_df, 
+    by = "seqn")
 
-
-
-
+anti_join(demographic_df, accel_participant_df)
+anti_join(accelerometer_df, accel_participant_df)
 
 ```
 

@@ -76,8 +76,6 @@ accel_participant_df <-
     by = "seqn")
 
 anti_join(demographic_df, accel_participant_df)
-anti_join(accelerometer_df, accel_participant_df)
-
 ```
 
 
@@ -87,11 +85,19 @@ category
 demographic_df %>% 
   group_by(sex, education) %>% 
   count() %>% 
+  pivot_wider(
+    names_from = education,
+    values_from = n
+  ) %>% 
   knitr::kable()
 
 ```
 Looking at the count of the number of men and women in each education category,
-we can see that
+we can see that there only appears to be a major difference in the number of 
+men and women high school equivalent category, such that there were 12 more 
+male participants than female participants with a high school equivalent 
+education. Interestingly, more female participants had more than high school
+education compared to men, but only by a difference of +3.
 
 create visualization of age distribution for each education category
 ```{r}

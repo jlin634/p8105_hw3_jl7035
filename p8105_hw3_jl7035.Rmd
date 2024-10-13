@@ -42,7 +42,9 @@ demographic_df <-
       labels = c("Less than high school", "High School Equivalent", 
                  "More than high school")
     )
-  )
+  ) %>% filter(
+    age >= 21
+  ) %>% drop_na()
   
 head(demographic_df)
   
@@ -73,6 +75,12 @@ accel_participant_df <-
 
 anti_join(demographic_df, accel_participant_df)
 anti_join(accelerometer_df, accel_participant_df)
+
+```
+
+Produce reader-friendly table for number of men and women in each education
+category
+```{r}
 
 ```
 

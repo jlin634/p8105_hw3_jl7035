@@ -32,8 +32,16 @@ demographic_df <-
   ) %>% 
   janitor::clean_names() %>% 
   mutate(
-    sex = factor(sex, levels = c("1", "2"), labels = c("male", "female")),
-    
+    sex = factor(
+      sex, 
+      levels = c("1", "2"), 
+      labels = c("male", "female")),
+    education = factor(
+      education,
+      levels = c("1", "2", "3"),
+      labels = c("Less than high school", "High School Equivalent", 
+                 "More than high school")
+    )
   )
   
 head(demographic_df)

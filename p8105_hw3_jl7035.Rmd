@@ -105,7 +105,21 @@ ggplot(demographic_df, aes(x = education, y = age, fill = sex)) +
   geom_boxplot(outliers = TRUE)
 
 ```
-
+Examining the distribution of age by educational level for male and female 
+participants. We can once again notice some differences. Firstly, we can note 
+that while the median age of men and women in the less than high school and more
+than high school categories are relatively similar, we see a more substantial 
+difference in the high school equivalent category. Here, female participants 
+have a median age hovering around 62-63, which is higher than the male 
+equivalent, at roughly 54. Looking at the spread of values in each of the 3 
+categories, we can notice, perhaps a tiny bit of skew. In the less than 
+high school and high school equivalent categories, for both men and women,
+the distance between median and q3 is slightly smaller and suggestive of a 
+potential slight left skew. For the more than high school equivalent, the median
+is closer to q1, and potentially suggests a slight right skew. Lastly, we can 
+see that the whole distribution of ages for the female high school equivalent 
+category is shifted upwards compared to the male counterpart, as the q1 and q3 
+are higher in the female category vs the male. 
 
 
 ## Problem 3

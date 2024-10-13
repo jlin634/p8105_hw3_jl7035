@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 library(ggplot2)
+library(ggridges)
 ```
 ## Problem 1
 ```{r}
@@ -91,8 +92,22 @@ accel_participant_df <-
 Produce reader-friendly table for number of men and women in each education
 category
 ```{r}
+demographic_df %>% 
+  group_by(sex, education) %>% 
+  count() %>% 
+  knitr::kable()
 
 ```
+Looking at the count of the number of men and women in each education category,
+we can see that
+
+create visualization of age distribution for each education category
+```{r}
+ggplot(demographic_df, aes(x = education, y = age, fill = sex)) +
+  geom_boxplot(outliers = TRUE)
+
+```
+
 
 
 ## Problem 3

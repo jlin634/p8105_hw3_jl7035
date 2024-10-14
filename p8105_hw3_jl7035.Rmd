@@ -159,7 +159,7 @@ consistently until age 80. Women seem to peak in total MIMS when nearing age
 before decreasing afterwards, albeit at a less steep rate than their female 
 counterparts.
 
-24-hour activity time courses for each education level, shown by sex
+Create df representing hourly activity of participants
 ```{r}
 daily_activity <- accel_participant_df %>% 
   mutate(hour = ceiling(Minute / 60)) %>% 
@@ -167,9 +167,10 @@ daily_activity <- accel_participant_df %>%
   summarise(hourly_activity = sum(MIMS)) %>% 
   left_join(demographic_df) %>% 
   relocate(hourly_activity, .before = total_activity)
-  
+```
 
-
+24-hour activity time courses for each education level, shown by sex
+```{r}
 ggplot(daily_activity, aes(x = hour, y = hourly_activity, color = sex)) +
   geom_point(alpha = 0.2) +
   geom_smooth(aes(color = sex), se =FALSE) +
@@ -181,14 +182,22 @@ ggplot(daily_activity, aes(x = hour, y = hourly_activity, color = sex)) +
   ) +
   xlab("Hour of the Day") +
   ylab("Activity by Hour") +  
-  facet_grid(.~education)
+  facet_grid(.~education) 
 
 
 ```
-```{r}
-
-
-```
+Looking at the graphs, we notice a similar pattern of hourly activity across 
+the 24 hours for all 3 educational categories and for both sexes. Activity 
+tends to be the lowest in the early hours of the day, hitting a global 
+minimum around hour 4. Afterwards, activity steadily increases until midday 
+and stay relatively consistent until decreasing once again around hour 20 and 
+until hour 24 (likely when participants are getting ready to sleep). 
+Interestingly, we see a slight steeper decline in activity beginning around 
+hour 12 for participants with less than high school education compared to 
+the other 2 categories. Generally, the trends in activity correspond to the 
+awake hours of the participants. We see the activities reach the lowest 
+in that hour 0-4 range, suggesting a time frame where the participants are 
+consistently asleep.
 
 
 ## Problem 3

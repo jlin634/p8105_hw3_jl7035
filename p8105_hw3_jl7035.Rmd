@@ -62,7 +62,7 @@ accelerometer_df <-
     values_to = "MIMS"
   ) %>% 
   mutate(
-    Minute = str_remove(Minute, "min")
+    Minute = as.numeric(str_remove(Minute, "min"))
   )
   
 
@@ -161,9 +161,21 @@ counterparts.
 
 24-hour activity time courses for each education level, shown by sex
 ```{r}
+accel_participant_df <- accel_participant_df %>% 
+  mutate(hour = ceiling(Minute / 60))
+
+
+ggplot(accel_participant_df, aes(x = Minute, y = MIMS, color = sex)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth(aes(color = sex), se =FALSE) +
+  facet_grid(.~education)
+
 
 ```
+```{r}
 
+
+```
 
 
 ## Problem 3

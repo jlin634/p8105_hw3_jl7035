@@ -296,9 +296,26 @@ Jan_July_20_24 %>%
 
 
 ```
-Looking at the table, we can see that usage of citi bike seems to wane 
+Looking at the table, we can see that usage of Citi bike seems to wane 
 in January for both casual users and membership holders, irrespective of the 
 year of the data. This makes sense as one would assume bike usage decreases in
-the winter. It is also interesting to note that the number of uses of citi bike
+the winter. It is also interesting to note that the number of uses of Citi bike
 in the months of January and July increased from 2020 to 2024 for both the 
 casual user and membership holder groups.
+
+5 most popular starting stations for July 2024
+```{r}
+July_2024 %>% 
+  select(start_station_name) %>% 
+  group_by(start_station_name) %>% 
+  count() %>% 
+  arrange(desc(n)) %>% 
+  head(5) %>% 
+  rename(
+    "number_uses" = n
+  ) %>% 
+  knitr::kable()
+
+
+```
+

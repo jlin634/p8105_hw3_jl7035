@@ -273,6 +273,16 @@ head(July_2024)
 
 
 ```
+Combine the datasets 
+```{r}
+Jan_July_20_24 <- rbind(Jan_2020, July_2020, Jan_2024, July_2024)
+
+head(Jan_July_20_24)
+
+```
+
+
+
 Create reader-friendly table showing total number of rides in each combination
 of year and month separating casual riders and Citi Bike members
 ```{r}

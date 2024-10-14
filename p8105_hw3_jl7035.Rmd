@@ -283,13 +283,22 @@ Create reader-friendly table showing total number of rides in each combination
 of year and month separating casual riders and Citi Bike members
 ```{r}
 Jan_July_20_24 %>% 
-  select(Month, Year, member_casual) %>% 
-  group_by(Month, Year, member_casual) %>% 
+  select(month_year, member_casual) %>% 
+  group_by(month_year, member_casual) %>% 
   count() %>% 
-  pivot_wider() %>% 
+  pivot_wider(
+    names_from = month_year,
+    values_from = n
+  ) %>%
+  relocate("July 2020", .after = "January 2020") %>% 
   knitr::kable()
 
 
 
 ```
-
+Looking at the table, we can see that usage of citi bike seems to wane 
+in January for both casual users and membership holders, irrespective of the 
+year of the data. This makes sense as one would assume bike usage decreases in
+the winter. It is also interesting to note that the number of uses of citi bike
+in the months of January and July increased from 2020 to 2024 for both the 
+casual user and membership holder groups.

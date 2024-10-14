@@ -205,11 +205,16 @@ consistently asleep.
 
 Clean January 2020 Dataset
 ```{r}
-Jan_2020 <- read_csv(
-  file = "Data/citibike/Jan 2020 Citi.csv",
-  na = c("NA", "", "."),
-  col_select = c(ride_id:member_casual)
-) %>% janitor::clean_names()
+Jan_2020 <- 
+  read_csv(
+    file = "Data/citibike/Jan 2020 Citi.csv",
+    na = c("NA", "", "."),
+    col_select = c(ride_id:member_casual)) %>%
+  janitor::clean_names() %>% 
+  mutate(
+    Year = 2020,
+    Month = "January"
+  )
 
 head(Jan_2020)
 
@@ -217,11 +222,16 @@ head(Jan_2020)
 
 Clean January 2024 Dataset
 ```{r}
-Jan_2024 <- read_csv(
-  file = "Data/citibike/Jan 2024 Citi.csv",
-  na = c("NA", "", "."),
-  col_select = c(ride_id:member_casual)
-) %>% janitor::clean_names()
+Jan_2024 <- 
+  read_csv(
+    file = "Data/citibike/Jan 2024 Citi.csv",
+    na = c("NA", "", "."),
+    col_select = c(ride_id:member_casual)) %>% 
+  janitor::clean_names() %>% 
+  mutate(
+    Year = 2024,
+    Month = "January"
+  )
 
 head(Jan_2024)
 
@@ -230,11 +240,17 @@ head(Jan_2024)
 
 Clean July 2020 Dataset
 ```{r}
-July_2020 <- read_csv(
-  file = "Data/citibike/July 2020 Citi.csv",
-  na = c("NA", "", "."),
-  col_select = c(ride_id:member_casual)
-) %>% janitor::clean_names()
+July_2020 <- 
+  read_csv(
+    file = "Data/citibike/July 2020 Citi.csv",
+    na = c("NA", "", "."),
+    col_select = c(ride_id:member_casual)) %>% 
+  janitor::clean_names() %>%
+  mutate(
+    Year = 2020,
+    Month = "July"
+  )
+  
 
 head(July_2020)
 
@@ -242,15 +258,26 @@ head(July_2020)
 
 Clean July 2024 Dataset
 ```{r}
-July_2024 <- read_csv(
-  file = "Data/citibike/July 2024 Citi.csv",
-  na = c("NA", "", "."),
-  col_select = c(ride_id:member_casual)
-) %>% janitor::clean_names()
+July_2024 <- 
+  read_csv(
+    file = "Data/citibike/July 2024 Citi.csv",
+    na = c("NA", "", "."),
+    col_select = c(ride_id:member_casual)) %>% 
+  janitor::clean_names() %>%
+  mutate(
+    Year = 2024,
+    Month = "July"
+  )
 
 head(July_2024)
 
 
 ```
+Create reader-friendly table showing total number of rides in each combination
+of year and month separating casual riders and Citi Bike members
+```{r}
 
+
+
+```
 

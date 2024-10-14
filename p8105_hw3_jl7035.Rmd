@@ -121,6 +121,24 @@ see that the whole distribution of ages for the female high school equivalent
 category is shifted upwards compared to the male counterpart, as the q1 and q3 
 are higher in the female category vs the male. 
 
+compare total activity for men and women and by education
+```{r}
+demographic_df <- accel_participant_df %>% 
+  group_by(seqn) %>% 
+  select(MIMS, seqn) %>% 
+  summarise(total_activity = sum(MIMS)) %>% 
+  left_join(demographic_df, by = "seqn") %>% 
+  relocate(total_activity, .after = education)
+
+ggplot(demographic_df, aes(x = age, y = total_activity, color = sex)) +
+  geom_point( alpha = 0.5) +
+  geom_smooth(aes(color = sex), se = FALSE) +
+  facet_grid(.~education)
+
+
+```
+
+
 
 ## Problem 3
 ```{r}

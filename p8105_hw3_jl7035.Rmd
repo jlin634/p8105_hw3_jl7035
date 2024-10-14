@@ -161,11 +161,16 @@ counterparts.
 
 24-hour activity time courses for each education level, shown by sex
 ```{r}
-accel_participant_df <- accel_participant_df %>% 
-  mutate(hour = ceiling(Minute / 60))
+daily_activity <- accel_participant_df %>% 
+  mutate(hour = ceiling(Minute / 60)) %>% 
+  group_by(seqn, hour) %>%
+  summarise(hourly_activity = sum(MIMS)) %>% 
+  left_join(demographic_df) %>% 
+  relocate(hourly_activity, .before = total_activity)
+  
 
 
-ggplot(accel_participant_df, aes(x = Minute, y = MIMS, color = sex)) +
+ggplot(daily_activity, aes(x = hour, y = MIMS, color = sex)) +
   geom_point(alpha = 0.1) +
   geom_smooth(aes(color = sex), se =FALSE) +
   facet_grid(.~education)

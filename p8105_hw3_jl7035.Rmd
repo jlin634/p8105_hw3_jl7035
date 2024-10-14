@@ -212,8 +212,7 @@ Jan_2020 <-
     col_select = c(ride_id:member_casual)) %>%
   janitor::clean_names() %>% 
   mutate(
-    Year = 2020,
-    Month = "January"
+    month_year = "January 2020"
   )
 
 head(Jan_2020)
@@ -229,8 +228,7 @@ Jan_2024 <-
     col_select = c(ride_id:member_casual)) %>% 
   janitor::clean_names() %>% 
   mutate(
-    Year = 2024,
-    Month = "January"
+    month_year = "January 2024"
   )
 
 head(Jan_2024)
@@ -247,8 +245,7 @@ July_2020 <-
     col_select = c(ride_id:member_casual)) %>% 
   janitor::clean_names() %>%
   mutate(
-    Year = 2020,
-    Month = "July"
+    month_year = "July 2020"
   )
   
 
@@ -265,8 +262,7 @@ July_2024 <-
     col_select = c(ride_id:member_casual)) %>% 
   janitor::clean_names() %>%
   mutate(
-    Year = 2024,
-    Month = "July"
+    month_year = "July 2024"
   )
 
 head(July_2024)
@@ -286,6 +282,12 @@ head(Jan_July_20_24)
 Create reader-friendly table showing total number of rides in each combination
 of year and month separating casual riders and Citi Bike members
 ```{r}
+Jan_July_20_24 %>% 
+  select(Month, Year, member_casual) %>% 
+  group_by(Month, Year, member_casual) %>% 
+  count() %>% 
+  pivot_wider() %>% 
+  knitr::kable()
 
 
 

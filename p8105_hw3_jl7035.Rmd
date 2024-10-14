@@ -242,6 +242,14 @@ head(July_2020)
 
 Clean July 2024 Dataset
 ```{r}
+July_2024 <- read_csv(
+  file = "Data/citibike/July 2024 Citi.csv",
+  na = c("NA", "", "."),
+  col_select = c(ride_id:member_casual)
+) %>% janitor::clean_names()
+
+head(July_2024)
+
 
 ```
 

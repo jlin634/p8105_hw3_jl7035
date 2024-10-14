@@ -131,10 +131,36 @@ demographic_df <- accel_participant_df %>%
   relocate(total_activity, .after = education)
 
 ggplot(demographic_df, aes(x = age, y = total_activity, color = sex)) +
+  xlab("Age of Participant") +
+  ylab("Total MIMS") +
   geom_point( alpha = 0.5) +
   geom_smooth(aes(color = sex), se = FALSE) +
   facet_grid(.~education)
 
+
+```
+Looking at these 3 plots, firstly it must be noted that there seems to be great
+variation in the total activity levels by age for both sexes, so the trend lines
+do not fit with the data perfectly. Now, comparing the 3 categories, it is 
+interesting to note that participants in the less than high school education 
+category start with the highest Total MIMS at ages close to 20, but see a 
+sharp decline by age 80, such that they seem to be lower than the other two 
+educational categories. Now looking at each of the three educational categories,
+for less than high school, it seems that female participants have more total 
+activity when they are younger, but men surpass them around age and even see 
+a resurgent increase in activity around 60. Ultimately, both sexes finish with 
+similar activity levels in old age. For high school equivalent, female 
+participants consistently show more activity than their male counterparts, 
+until they reach age 80. Interestingly, women see upticks in activity around 
+ages 40 (global maximum) and 70 (local maximum). Lastly, in the more than high
+school education category, female participants show more activity than men 
+consistently until age 80. Women seem to peak in total MIMS when nearing age
+60, before waning afterwards. Men reach their peak activity earlier, around 45,
+before decreasing afterwards, albeit at a less steep rate than their female 
+counterparts.
+
+24-hour activity time courses for each education level, shown by sex
+```{r}
 
 ```
 

@@ -170,9 +170,17 @@ daily_activity <- accel_participant_df %>%
   
 
 
-ggplot(daily_activity, aes(x = hour, y = MIMS, color = sex)) +
-  geom_point(alpha = 0.1) +
+ggplot(daily_activity, aes(x = hour, y = hourly_activity, color = sex)) +
+  geom_point(alpha = 0.2) +
   geom_smooth(aes(color = sex), se =FALSE) +
+  scale_x_continuous(
+    breaks = seq(0, 24, by = 4),
+    limits = c(0,24)) +
+  viridis::scale_color_viridis(
+    discrete = TRUE
+  ) +
+  xlab("Hour of the Day") +
+  ylab("Activity by Hour") +  
   facet_grid(.~education)
 
 

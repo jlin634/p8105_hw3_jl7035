@@ -200,8 +200,34 @@ in that hour 0-4 range, suggesting a time frame where the participants are
 consistently asleep.
 
 
+
 ## Problem 3
+
+Clean January 2020 Dataset
+```{r}
+Jan_2020 <- read_csv(
+  file = "Data/citibike/Jan 2020 Citi.csv",
+  na = c("NA", "", "."),
+  col_select = c(ride_id:member_casual)
+) %>% janitor::clean_names()
+
+head(Jan_2020)
+
+```
+
+Clean January 2024 Dataset
 ```{r}
 
 ```
+
+Clean July 2020 Dataset
+```{r}
+
+```
+
+Clean July 2024 Dataset
+```{r}
+
+```
+
 

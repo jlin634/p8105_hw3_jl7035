@@ -379,9 +379,24 @@ ggplot(aes(x = month, y = duration, fill = member_casual )) +
     fun = "median", 
     color = "blue",
     position = position_dodge(0.9)) +
-  xlab("Day of the Week") +
+  xlab("Month of the Year") +
   ylab("Duration of Bike Ride") +
   facet_grid(.~rideable_type)
 
 ```
-
+Looking at these two plots, we can first notice that based on the median 
+duration of Bike Ride, casual users of Citi Biker seem to go on slightly longer
+bike rides when using the classic bike compared to membership-holders. It must 
+be stated that the difference is quite small. Regarding the electronic bike, 
+based on the median duration of bike ride, there does not seem to be much 
+difference between the casual user and the membership-holder. The results 
+stated thus far are irrespective of the month of the year. Now if we examine 
+the exact shapes of the violin plots, we can once again notice some differences.
+Interestingly, the membership holder had bike-ride durations clustered closer 
+to 0 for both the months of January and July. The shape of the violin plot 
+for casual users of the classic bike in January and July are a bit different.
+They are more evenly spread out, such that there is a more even concentration 
+of values from 0 to ~30. This trend did not follow through with the violin plots 
+for causal users' and membership-holders' usage of the electric bike during
+January and July. In these cases, the shapes of the violin plots were very 
+similar. Lastly, it appears that all these violin plots show a positive skew.

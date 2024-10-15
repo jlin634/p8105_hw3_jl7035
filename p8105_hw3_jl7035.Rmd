@@ -347,5 +347,23 @@ ggplot(Jan_July_20_24, aes(x = weekdays, y = duration, fill = month)) +
 
 
 ```
-
+Looking at the series of violin plots. There are couple of interesting things 
+to point out. Firstly, regardless of day of week, or month, or year, the 
+violin plots for duration of bike ride demonstrate significant right skew. 
+We can see that most values clusters between 0 and 25, yet a large amount 
+of upper-bound outliers skew the distribution. This is why we see these long, 
+thin tails moving upwards from each violin plot. Secondly, it is interesting 
+to note that while the median duration of ride is greater in July for both 
+2020 and 2024, from a visual scan, it seems that the gap has actually 
+decreased from 2020 to 2024. Furthermore, we see that the portions of the 
+violin plot with more substantial concentration of data points seem longer in 
+2020 than 2024. I wonder if this relates to the increase in usage of Citi bikes
+from 2020 to 2024. Perhaps there is a sampling effect at play, where 
+in 2020, more avid bikers (either casual or membership-holding) were using Citi 
+bike and thus had longer bike rides. By 2024, with a greater influx of riders,
+perhaps these new riders dragged the median values downwards. Lastly,
+I would like to note that there does not seem to be a large amount of variation
+in the duration of bike ride by day (based solely on the median). The medians
+are relatively similar for each day of the week, even when segmenting into 
+the two differing months and the two different years.
 

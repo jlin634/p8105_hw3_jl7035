@@ -15,11 +15,59 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
 library(ggridges)
+library(patchwork)
 ```
 ## Problem 1
+
+Load Data
 ```{r}
+library(p8105.datasets)
+data("ny_noaa")
 
 ```
+
+Inspect Data
+```{r}
+head(ny_noaa)
+
+```
+There are `r nrow(ny_noaa)` data points and `r ncol(ny_noaa)` variables of 
+interest in this dataset. The key variables in this dataset are the 
+id of the weather station, the date of which data was collected, amount 
+of precipitation, amount of snow, depth of the snow, and the minimum and 
+maximum temparature on that given date. Examining the number of missing values 
+in this dataset, I would argue that they are a valid concern. With a large 
+amount of missing values, any plots made may not accurately represent 
+real life conditions. This conclusion is driven by the number of missing 
+values in this dataset, which is `r sum(is.na(ny_noaa))`. Naturally, 
+merely summing the amount of NA values it not necessarily the most accurate 
+measure, as it doesn't capture how NA is spread across the columns.
+
+Clean the Data
+```{r}
+ny_noaa <- ny_noaa %>% 
+  mutate(
+    tmax = as.numeric(tmax),
+    tmin = as.numeric(tmin),
+  ) %>%
+  separate(date, into = c("year", "month", "day"), sep = "-")
+
+head(ny_noaa)
+
+
+```
+Here I noticed that tmax and tmin were originally char types, which is why
+I changed them to numeric. The separation of the date into 3 columns was 
+per the instructions of the spec. 
+
+
+Find most commonly observed values for snowfall 
+```{r}
+ny_noaa %>% 
+  count(snow) %>% 
+  
+```
+
 
 
 ## Problem 2

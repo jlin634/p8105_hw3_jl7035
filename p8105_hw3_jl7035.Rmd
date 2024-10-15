@@ -72,7 +72,52 @@ The most commonly occurring value for snowfall is 0. This likely because the
 wide majority of days per year do not see snowfall. Afterwards, the second
 most frequently appearing value is NA, indicating missing data. Afterwards, 
 we also see values like 25, 13, 51, and 76, however I am not sure why these 
-values are so commonly occuring.
+values are so commonly occurring.
+
+Make a two-panel plot showing the average max temperature in January and in July 
+in each station across years. Is there any observable / interpretable structure? 
+Any outliers?
+```{r}
+ny_noaa %>% 
+  group_by(id, month, year) %>% 
+  filter(month == '01'|month == '07') %>% 
+  summarise(avg_max_temp = mean(tmax, na.rm = TRUE)) %>% 
+  ggplot(aes(x = year, y = avg_max_temp, group = id)) +
+  geom_point() +
+  facet_grid(~month)
+
+
+
+```
+Examining this plot, we see the general trend that across all the reporting 
+weather stations, the average max temperature seen is higher in July than 
+January. This trend remains consistent throughout the entire span of years. 
+There are a couple of outlier cases. The most notable appears to occur in 
+July of 1987, where there was an uncharacteristically low average max 
+temperature reported by a weather station.
+
+
+Make a two-panel plot showing (i) tmax vs tmin for the full dataset 
+(note that a scatterplot may not be the best option); and 
+(ii) make a plot showing the distribution of snowfall values 
+greater than 0 and less than 100 separately by year
+
+```{r}
+tmax_vs_tmin <- ny_noaa %>% 
+  ggplot(aes(x = tmax, y = tmin)) +
+  geom_hex()
+
+snowfall_less_100 <- ny_noaa %>%
+  group_by(year) %>% 
+  filter(snow > 0 & snow < 100) %>% 
+  ggplot(aes(x = year, y = snow)) +
+  ylab("snow fall")
+  geom_density_ridges()
+  
+tmax_vs_tmin + snowfall_less_100
+
+```
+
 
 
 

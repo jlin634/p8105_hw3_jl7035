@@ -65,8 +65,14 @@ Find most commonly observed values for snowfall
 ```{r}
 ny_noaa %>% 
   count(snow) %>% 
+  arrange(desc(n))
   
 ```
+The most commonly occurring value for snowfall is 0. This likely because the 
+wide majority of days per year do not see snowfall. Afterwards, the second
+most frequently appearing value is NA, indicating missing data. Afterwards, 
+we also see values like 25, 13, 51, and 76, however I am not sure why these 
+values are so commonly occuring.
 
 
 

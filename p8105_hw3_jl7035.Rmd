@@ -110,14 +110,19 @@ tmax_vs_tmin <- ny_noaa %>%
 snowfall_less_100 <- ny_noaa %>%
   group_by(year) %>% 
   filter(snow > 0 & snow < 100) %>% 
-  ggplot(aes(x = year, y = snow)) +
+  ggplot(aes(x = snow, y = year)) +
+  geom_density_ridges() +
   ylab("snow fall")
-  geom_density_ridges()
   
 tmax_vs_tmin + snowfall_less_100
 
 ```
-
+Regarding the hexplot, we notice that highest count of data fall around the 
+values of 0 for tmax and tmin. Furthermore, that seems to show that the data 
+is clustering at the center of the plot. Regarding the ridge plot, we can 
+notice some multi-modal behavior, such that for each given year, there are 
+several cases of commonly occurring snow values. These values remained relatively
+consistent from 1981 to 2010, and can be identified as roughly 15, 25, and 45
 
 
 

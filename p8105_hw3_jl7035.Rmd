@@ -319,3 +319,18 @@ July_2024 %>%
 
 ```
 
+plot to investigate the effects of day of the week, month, and year on 
+median ride duration
+```{r}
+
+Jan_July_20_24 <- Jan_July_20_24 %>% 
+  mutate(
+    month_year = parse_date_time(month_year, order = "my"),
+    month = month(month_year),
+    year = year(month_year)
+  ) %>% 
+  select(-month_year)
+
+```
+
+

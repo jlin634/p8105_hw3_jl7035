@@ -271,7 +271,14 @@ head(July_2024)
 ```
 Combine the datasets 
 ```{r}
-Jan_July_20_24 <- rbind(Jan_2020, July_2020, Jan_2024, July_2024)
+Jan_July_20_24 <- rbind(Jan_2020, July_2020, Jan_2024, July_2024) %>% 
+  mutate(
+    weekdays = factor(
+      weekdays,
+      levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
+                 "Saturday", "Sunday")
+    )
+  )
 
 head(Jan_July_20_24)
 
@@ -322,14 +329,22 @@ July_2024 %>%
 plot to investigate the effects of day of the week, month, and year on 
 median ride duration
 ```{r}
-
 Jan_July_20_24 <- Jan_July_20_24 %>% 
-  mutate(
-    month_year = parse_date_time(month_year, order = "my"),
-    month = month(month_year),
-    year = year(month_year)
-  ) %>% 
-  select(-month_year)
+  separate(month_year, c("month", "year"), sep = " ")
+
+ggplot(Jan_July_20_24, aes(x = weekdays, y = duration, fill = month)) +
+  geom_violin(alpha = 0.5) +
+  stat_summary(
+    aes(group = month),
+    fun = "median", 
+    color = "blue", 
+    position = position_dodge(width = 0.9),
+    show.legend = FALSE) +
+  xlab("Day of the Week") +
+  ylab("Duration of Bike Ride") +
+  facet_grid(.~year)
+
+
 
 ```
 

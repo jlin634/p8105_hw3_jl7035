@@ -367,3 +367,21 @@ in the duration of bike ride by day (based solely on the median). The medians
 are relatively similar for each day of the week, even when segmenting into 
 the two differing months and the two different years.
 
+
+Figure that shows the impact of month, membership status, and bike type on the 
+distribution of ride duration
+```{r}
+Jan_July_20_24 %>% 
+  filter(year == "2024") %>% 
+ggplot(aes(x = month, y = duration, fill = member_casual )) +
+  geom_violin(alpha = 0.5) +
+  stat_summary(
+    fun = "median", 
+    color = "blue",
+    position = position_dodge(0.9)) +
+  xlab("Day of the Week") +
+  ylab("Duration of Bike Ride") +
+  facet_grid(.~rideable_type)
+
+```
+
